@@ -13,6 +13,7 @@ app.factory("services", ["$http",
 ]);
 // Contrllers
 app.controller('bookCtrl', function($scope, services){
+  $scope.hover = '';
   $scope.isLoader = true;
   $scope.search = "";
   $scope.jumptopage = 1;
@@ -136,6 +137,12 @@ app.controller('bookCtrl', function($scope, services){
     }
     updatePageSequence();
     $scope.pagination($scope.jumptopage);
+  }
+  $scope.hoverIn = function(data){
+    $scope.hover = data;
+  }
+  $scope.hoverOut = function(){
+    $scope.hover = '';
   }
 });
 //Routers
