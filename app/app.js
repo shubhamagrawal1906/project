@@ -129,8 +129,8 @@ app.controller('bookCtrl', function($scope, services){
   }
   $scope.jumpToPage = function(){
     $scope.jumptopage = parseInt($scope.jumptopage);
-    if($scope.jumptopage < 0)
-      $scope.jumptopage = 0;
+    if($scope.jumptopage < 1)
+      $scope.jumptopage = 1;
     else if($scope.jumptopage > $scope.pages.length){
       $scope.jumptopage = $scope.pages.length;
     }
