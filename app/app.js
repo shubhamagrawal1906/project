@@ -13,6 +13,7 @@ app.factory("services", ["$http",
 ]);
 // Contrllers
 app.controller('bookCtrl', function($scope, services){
+  $scope.isLoader = true;
   $scope.search = "";
   $scope.jumptopage = 1;
   $scope.perPagination = 5;
@@ -63,7 +64,7 @@ app.controller('bookCtrl', function($scope, services){
       setShowPagination();
     }
   }
-  
+
   $scope.perPageSelect =function(){
     upadteSequence();
     $scope.pagination(1);
@@ -91,6 +92,7 @@ app.controller('bookCtrl', function($scope, services){
   services.getBooks().then(function(data){
     $scope.allBooks = data.data.books;
     $scope.pagination(1);
+    $scope.isLoader = false;
   });
   $scope.searchBook = function(){
     var bookIndex = search($scope.books , 'title', $scope.search);
