@@ -1,0 +1,21 @@
+<div class="alert alert-success alert-dismissable fade in" ng-show="success != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Success!</strong> {{success}}
+</div>
+<div class="alert alert-danger alert-dismissable fade in" ng-show="error != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Error!</strong> {{error}}
+</div>
+<form name="loginForm">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" name="username" class="form-control" id="username" ng-model="username" required>
+    <span ng-show="loginForm.username.$invalid && loginForm.username.$touched">Username required.</span>
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" name="password" class="form-control" id="password" ng-model="password" required>
+    <span ng-show="loginForm.password.$invalid && loginForm.password.$touched">Password required.</span>
+  </div>
+  <button type="submit" ng-disabled="loginForm.username.$invalid || loginForm.password.$invalid" class="btn btn-default" ng-click="submitForm()">Submit</button>
+</form>

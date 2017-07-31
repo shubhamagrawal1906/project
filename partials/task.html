@@ -1,0 +1,38 @@
+<div class="alert alert-success alert-dismissable fade in" ng-show="success != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Success!</strong> {{success}}
+</div>
+<div class="alert alert-danger alert-dismissable fade in" ng-show="error != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Error!</strong> {{error}}
+</div>
+<a ng-href="#!/task/create/"><button type="button">Create Task</button></a>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Task Description</th>
+      <th>Due Date</th>
+      <th>Stage</th>
+      <th>Delete</th>
+      <th>History</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="task in tasks" ng-hide="task.is_child">
+      <td>
+        <a ng-href="#!/subtask/{{task._id}}"><span ng-hide="task.is_update" >{{task.task_name}}</span></a>
+        <input class="form-control" ng-show="task.is_update" type="text" ng-model="task.task_name">
+      </td>
+      <td>{{task.description}}</td>
+      <td>{{task.due_date}}</td>
+      <td>
+        <select class="form-control" id="stages" name="stages" ng-model="task.stage_id" ng-change="updateStage(task)" ng-disabled="task.is_child" required>
+          <option ng-repeat="stage in stages" ng-selected="{{task.stage_id == stage._id}}" value="{{stage._id}}">{{stage.task_name}}</option>
+        </select>
+      </td>
+      <td><td><button type="button" name="delete" ng-click="delete(task._id, task.task_name)">Delete</button></td></td>
+      <td><a ng-href="#!/subtask/history/{{task._id}}">{{task.task_name}} History</a></td>
+    </tr>
+  </tbody>
+</table>

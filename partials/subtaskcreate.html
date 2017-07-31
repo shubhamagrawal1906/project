@@ -1,0 +1,45 @@
+<div class="alert alert-success alert-dismissable fade in" ng-show="success != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Success!</strong> {{success}}
+</div>
+<div class="alert alert-danger alert-dismissable fade in" ng-show="error != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Error!</strong> {{error}}
+</div>
+<form name="subtaskForm">
+  <div class="form-group">
+    <label for="tasks">Select Task:</label>
+    <select class="form-control" id="tasks" name="tasks" ng-model="selectedTask" ng-options="x.task_name for x in tasks" required>
+    </select>
+    <span ng-show="subtaskForm.tasks.$invalid && subtaskForm.tasks.$touched">Task required.</span>
+  </div>
+  <div class="form-group">
+    <label for="subtaskname">Subtask Name:</label>
+    <input type="text" name="subtaskname" class="form-control" id="subtaskname" ng-model="subtaskname" required>
+    <span ng-show="subtaskForm.subtaskname.$invalid && subtaskForm.subtaskname.$touched">Task name required.</span>
+  </div>
+  <div class="form-group">
+    <label for="subtaskdesc">Subtask Description:</label>
+    <textarea class="form-control" name="subtaskdesc" rows="5" ng-model="subtaskdesc" id="subtaskdesc" required></textarea>
+    <span ng-show="subtaskForm.subtaskdesc.$invalid && subtaskForm.subtaskdesc.$touched">Task sequence required.</span>
+  </div>
+  <div class="form-group">
+    <label for="subtaskdate">Subtask Due Date:</label>
+    <input type="date" class="form-control" name="subtaskdate" ng-model="subtaskdate" id="subtaskdate" required>
+    <span ng-show="subtaskForm.subtaskdate.$invalid && subtaskForm.subtaskdate.$touched">Task due date required.</span>
+  </div>
+  <div class="form-group">
+    <label for="stages">Select Stage:</label>
+    <select class="form-control" id="stages" name="stages" ng-model="selectedStage" ng-options="x.task_name for x in stages" required>
+    </select>
+    <span ng-show="subtaskForm.stages.$invalid && subtaskForm.stages.$touched">Stage required.</span>
+  </div>
+  <div class="form-group">
+    <label for="users">Select User:</label>
+    <select class="form-control" id="users" name="users" ng-model="selectedUser" ng-options="x.user_name for x in users" required>
+    </select>
+    <span ng-show="subtaskForm.users.$invalid && subtaskForm.users.$touched">User required.</span>
+  </div>
+  <button type="submit" ng-disabled="subtaskForm.subtaskname.$invalid || subtaskForm.subtaskdesc.$invalid || subtaskForm.subtaskdate.$invalid || subtaskForm.tasks.$invalid" class="btn btn-default" ng-click="submitForm()">Submit</button>
+  <a ng-href="#!/task/"><button type="button" class="btn btn-default">Go to task</button></a>
+</form>

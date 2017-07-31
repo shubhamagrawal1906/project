@@ -1,0 +1,39 @@
+<div class="alert alert-success alert-dismissable fade in" ng-show="success != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Success!</strong> {{success}}
+</div>
+<div class="alert alert-danger alert-dismissable fade in" ng-show="error != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Error!</strong> {{error}}
+</div>
+<form name="taskForm">
+  <div class="form-group">
+    <label for="taskname">Task Name:</label>
+    <input type="text" name="taskname" class="form-control" id="taskname" ng-model="taskname" required>
+    <span ng-show="taskForm.taskname.$invalid && taskForm.taskname.$touched">Task name required.</span>
+  </div>
+  <div class="form-group">
+    <label for="taskdesc">Task Description:</label>
+    <textarea class="form-control" name="taskdesc" rows="5" ng-model="taskdesc" id="taskdesc" required></textarea>
+    <span ng-show="taskForm.taskdesc.$invalid && taskForm.taskdesc.$touched">Task sequence required.</span>
+  </div>
+  <div class="form-group">
+    <label for="taskdate">Task Due Date:</label>
+    <input type="date" class="form-control" name="taskdate" ng-model="taskdate" id="taskdate" required>
+    <span ng-show="taskForm.taskdate.$invalid && taskForm.taskdate.$touched">Task due date required.</span>
+  </div>
+  <div class="form-group">
+    <label for="stages">Select Stage:</label>
+    <select class="form-control" id="stages" name="stages" ng-model="selectedStage" ng-options="x.task_name for x in stages" required>
+    </select>
+    <span ng-show="taskForm.stages.$invalid && taskForm.stages.$touched">Stage required.</span>
+  </div>
+  <div class="form-group">
+    <label for="users">Select User:</label>
+    <select class="form-control" id="users" name="users" ng-model="selectedUser" ng-options="x.user_name for x in users" required>
+    </select>
+    <span ng-show="taskForm.users.$invalid && taskForm.users.$touched">User required.</span>
+  </div>
+  <button type="submit" ng-disabled="taskForm.taskname.$invalid || taskForm.taskdesc.$invalid || taskForm.taskdate.$invalid" class="btn btn-default" ng-click="submitForm()">Submit</button>
+  <a ng-href="#!/task/"><button type="button" class="btn btn-default">Go to task</button></a>
+</form>

@@ -1,0 +1,22 @@
+<div class="alert alert-success alert-dismissable fade in" ng-show="success != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Success!</strong> {{success}}
+</div>
+<div class="alert alert-danger alert-dismissable fade in" ng-show="error != ''">
+  <a class="close" ng-click="removeAlert();">&times;</a>
+  <strong>Error!</strong> {{error}}
+</div>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>S. No.</th>
+      <th>Task Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="history in histories">
+      <td><strong>{{$index + 1}}.</strong></td>
+      <td>{{history.history}}</td>
+    </tr>
+  </tbody>
+</table>
